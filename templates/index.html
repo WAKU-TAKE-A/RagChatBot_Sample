@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8" />
+    <title>RAG ChatBot</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        #chat-container { max-width: 600px; margin: auto; }
+        #query { width: 100%; padding: 10px; margin-bottom: 10px; }
+        #response { border: 1px solid #ccc; padding: 10px; min-height: 100px; white-space: pre-wrap; }
+        button { padding: 10px 20px; }
+    </style>
+</head>
+<body>
+    <div id="chat-container">
+        <h1>RAG ChatBot</h1>
+        <textarea id="query" rows="4" placeholder="質問を入力してください"></textarea>
+        <button onclick="sendQuery()">送信</button>
+        <div id="response"></div>
+    </div>
+
+    <script>
+        async function sendQuery() {
+            const query = document.getElementById("query").value;
+            const responseDiv = document.getElementById("response");
+            responseDiv.innerHTML = "処理中...";
+            try {
+                const response = await fetch("/query", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ query: query, top_k: 3 })
+                });
+                const data = await response.json();
+                if (response.ok) {
+                    // サーバーがHTMLを返すので、そのまま表示するだけでよい
+                    responseDiv.innerHTML = `<strong>回答:</strong><br>` + data.answer;
+                } else {
+                    responseDiv.innerHTML = `<strong>エラー:</strong> ${data.detail}`;
+                }
+            } catch (error) {
+                responseDiv.innerHTML = `<strong>エラー:</strong> ${error.message}`;
+            }
+        }
+    </script>
+</body>
+</html>

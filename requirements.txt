@@ -1,0 +1,8 @@
+uvicorn
+openai
+sentence-transformers
+faiss-cpu
+pypandoc
+python-dotenv
+jinja2
+markdown

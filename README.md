@@ -1,4 +1,4 @@
-# SentenceTransformer
+# RagChatBot Sample
 
 簡易版のRAG ChatBotです。
 

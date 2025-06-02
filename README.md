@@ -1,4 +1,4 @@
-# RagChatBot Sample
+# RagChatBot Sample001
 
 簡易版のRAG ChatBotです。
 

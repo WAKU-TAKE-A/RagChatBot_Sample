@@ -21,6 +21,8 @@ flowchart TD
     style A2 fill:#a8d5a2,stroke:#3a7734,stroke-width:2px,color:#000
 ```
 
+実行するには、OpenAIのAPIキーが必要です。OpenAI Platformのアカウントが必要です。（従量課金）
+
 ## ファイル
 
 ```
